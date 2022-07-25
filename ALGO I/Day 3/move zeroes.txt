@@ -1,0 +1,16 @@
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        stack<int> st;
+        for(int j=nums.size()-1;j>=0;j--){
+            if(nums[j]!=0) st.push(nums[j]);
+        }
+        int i=0;
+        while(!st.empty()){
+            nums[i]=st.top();
+            st.pop();
+            i++;
+        }
+        for(;i<nums.size();i++) nums[i]=0;
+    }
+};
