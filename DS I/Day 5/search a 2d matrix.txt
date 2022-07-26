@@ -1,0 +1,22 @@
+class Solution 
+{
+ public:
+
+bool searchMatrix(vector<vector<int>>& a, int x)
+{
+    int N=a.size();
+    int M=a[0].size();
+	for(int i=0;i<N;i++)
+	{
+		for(int j=0;j<M;j++)
+		{
+			if(a[i][j]==x)
+			{
+				return true;
+				break;
+			}
+		}
+	}
+return false;
+}
+};
