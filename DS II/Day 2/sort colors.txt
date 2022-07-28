@@ -1,0 +1,15 @@
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int zeroBound = -1, twoBound = nums.size(), i = 0;
+        while(i < twoBound) {
+            if (nums[i] == 1) i++;
+            else if (nums[i] == 0) {
+                iter_swap(nums.begin() + (i++), nums.begin() + (++zeroBound));
+            }
+            else {
+                iter_swap(nums.begin() + i, nums.begin() + (--twoBound));
+            }
+        }
+    }
+};

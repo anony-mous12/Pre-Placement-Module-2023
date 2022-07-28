@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& v) {
+        int n = v.size();
+        //store new merged interval
+        vector<vector<int>>ans;
+        if(n == 0){
+            return ans;
+        }
+        //sort the interval by first value
+        sort(begin(v), end(v));
+        vector<int>temp = v[0];
+        for(auto x : v){
+            if(temp[1] >= x[0]){
+                temp[1] = max(temp[1], x[1]);
+            }
+            else{
+                ans.push_back(temp);
+                temp = x;
+            }
+        }
+        //push back the last remaining interval
+        ans.push_back(temp);
+        return ans;
+    }
+};
