@@ -4,17 +4,18 @@ public:
 
     MyHashMap() {
         memset(mp, -1, 1000001);
+        
     }
     
     void put(int key, int value) {
-        mp[key] = value;
+        x[key]=value;
     }
-   
+    
     int get(int key) {
-        return mp[key];
+        return x[key];
     }
     
     void remove(int key) {
-        mp[key] = -1;
+        x[key]=-1;
     }
 };
