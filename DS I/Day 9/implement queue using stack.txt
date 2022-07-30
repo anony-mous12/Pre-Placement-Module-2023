@@ -1,0 +1,43 @@
+class MyQueue {
+public:
+    MyQueue() {   
+    }
+    
+    void push(int x) {
+        s1.push(x);
+        return;
+    }
+    
+    int pop() {
+        int frontElement;
+        passContentStacks(s1, s2);
+        frontElement = s2.top();
+        s2.pop();
+        passContentStacks(s2, s1);
+        return frontElement;
+    }
+    
+    int peek() {
+        int frontElement;
+        passContentStacks(s1, s2);
+        frontElement = s2.top();
+        passContentStacks(s2, s1);
+        return frontElement;
+    }
+    
+    bool empty() {
+        return s1.empty();
+    }
+    
+    /* this method passes the content of the stack s1 into s2 */
+    void passContentStacks(stack<int> &s1, stack<int> &s2) {
+        while (! s1.empty()) {
+            s2.push(s1.top());
+            s1.pop();
+        }
+        return;
+    }
+    
+private:
+    stack<int> s1, s2;
+};
