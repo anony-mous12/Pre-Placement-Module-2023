@@ -1,0 +1,36 @@
+class Solution {
+public:
+    vector<int> findAnagrams(string s, string p) {
+        if(s.size()<p.size()) return {};
+        
+        int n=p.size();
+        
+        vector<int> comp1(26, 0);
+        for(auto c:p) comp1[c-'a']++;
+        
+        int anagrams=0;
+        vector<int> comp2(26, 0);
+        
+        vector<int> count;
+        
+        // building a window
+        int l=0, r=0;
+        for(r; r<n; r++) comp2[s[r]-'a']++;
+        if(comp2==comp1) count.push_back(0);
+        
+        
+        // sliding the window
+        for(r; r<s.size(); r++) {
+            if(r-l+1>n) {
+                comp2[s[l]-'a']--;
+                l++;
+            }
+            
+            comp2[s[r]-'a']++;
+            
+            if(comp2==comp1) count.push_back(l);
+        }
+        
+        return count;
+    }
+};
