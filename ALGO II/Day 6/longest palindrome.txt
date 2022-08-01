@@ -1,0 +1,26 @@
+class Solution {
+public:
+int longestPalindrome(string s) {
+int arr[58] = {0};
+
+    for(char ch : s){
+        arr[ch - 'A']++;
+    }
+    
+    bool isOdd = false;
+    int res = 0;
+    
+    for(int i : arr){
+        if(i % 2 == 0)
+            res += i;
+        else{
+            res += (i - 1);
+            isOdd = true;
+        }
+            
+    }
+    
+    return isOdd ? res + 1 : res;
+    
+}
+};
