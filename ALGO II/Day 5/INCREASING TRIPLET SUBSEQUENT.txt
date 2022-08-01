@@ -1,0 +1,18 @@
+class Solution {
+public:
+    bool increasingTriplet(vector<int>& nums) {
+       int n = nums.size();///storing the length of array num
+    int fmin = INT_MAX;//
+    int smin = INT_MAX;
+    for(int i=0;i<n;i++){
+        if(nums[i]<=fmin){//checking if num is less than first min and updating if required
+            fmin = nums[i];
+        }
+        else if(nums[i]<=smin){// if the first min does not satisfy we move to else if and check if num is less than second min and update it accordingly
+            smin = nums[i];
+        }
+        else return true;
+    }
+    return false;
+    }
+};
