@@ -1,0 +1,26 @@
+class Solution {
+public:int sum=0;
+    bool solve(TreeNode* root, int targetSum)
+    {
+        if(root==nullptr)
+            return false;
+        
+        targetSum-=root->val;
+        if(root->left==nullptr and root->right==nullptr and targetSum==0)
+            return true;
+        
+          bool l= solve(root->left,targetSum);
+         bool r= solve(root->right,targetSum);
+        
+        return l or r;
+        }  
+    
+    
+    
+    
+        bool hasPathSum(TreeNode* root, int targetSum) {
+
+         return solve(root,targetSum);
+
+    }
+};

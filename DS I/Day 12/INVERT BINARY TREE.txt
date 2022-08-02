@@ -1,0 +1,20 @@
+class Solution {
+private: 
+        void invert(TreeNode* root){
+		
+			//Base condition
+            if(root == nullptr) return;
+			
+			//Call invert on left and right subtrees
+            invert(root->left);
+            invert(root->right);
+			
+			//swap the two subtrees
+            swap(root->left, root->right);
+        }
+    public:
+        TreeNode* invertTree(TreeNode* root) {
+            invert(root);
+            return root;
+        }
+};
