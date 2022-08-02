@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<int> partitionLabels(string s) {
+    vector<int> res;
+    int n = s.size();
+    unordered_map<char, int> m;
+    for(int i = 0; i < n; i++)m[s[i]] = i;
+    
+    for(int i = 0; i < n;){
+        int maxPos = m[s[i]], j;
+        for(j = i; j < maxPos; j++){
+            if(m[s[j]] > maxPos)maxPos = m[s[j]];
+        }
+        res.push_back(j - i + 1);
+        i = j + 1;
+    }
+    return res;
+
+    }
+};
