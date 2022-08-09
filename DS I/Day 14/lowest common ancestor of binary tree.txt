@@ -1,0 +1,19 @@
+class Solution {
+    TreeNode* LCA;
+public:
+    bool solve(TreeNode* root,int& p,int& q){
+        if(root==NULL) return false;
+        bool left=solve(root->left,p,q);
+        bool right=solve(root->right,p,q);
+        if((left && right) || ((left || right) && (root->val==p || root->val==q))){
+            LCA=root;
+            return false;
+        }
+        if(left || right || root->val==p || root->val==q) return true;
+        return false;
+    }
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        solve(root,p->val,q->val);
+        return LCA;
+    }
+};

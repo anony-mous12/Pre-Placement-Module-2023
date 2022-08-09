@@ -1,0 +1,15 @@
+class Solution {
+public:
+    unordered_map<int,int>mp;
+    bool findTarget(TreeNode* root, int target) {
+        if(root==NULL){return false;}
+        
+        if( mp.find(target-(root->val)) != mp.end())
+        {return true;}
+        
+        mp[root->val]++;
+        
+        return (findTarget(root->left,target)||findTarget(root->right,target));
+        
+    }
+};
