@@ -1,0 +1,46 @@
+class Solution {
+public:
+        vector<vector<int>>v;
+
+void solve(vector<int>&candidates,int target,int ind,vector<int>ans){
+    // base cases
+    if(target == 0){
+        v.push_back(ans);
+        return;
+    }
+    if(ind == candidates.size() ){
+        return;
+    }
+    
+    for(int i = ind ; i<candidates.size();i++){
+        
+        // if already we find for cadidates[i-1] then no require for candidates[i] if they are equal
+        if(i!=ind and candidates[i] == candidates[i-1]){
+            continue;
+        }
+        
+        // if possible then call function 
+        if(candidates[i]<=target){
+            ans.push_back(candidates[i]);
+            solve(candidates,target-candidates[i],i+1,ans);
+            ans.pop_back();  // backtrack
+        }
+        
+    }
+    return;
+    
+}
+vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+    
+    // store curr elements whose sum will equal to target
+    vector<int>ans;
+    
+    // sort in increasing order
+    sort(candidates.begin(),candidates.end());
+    
+    // call function
+    solve(candidates,target,0,ans);
+    return v;
+}
+    
+};

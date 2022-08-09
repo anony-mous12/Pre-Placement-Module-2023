@@ -1,0 +1,33 @@
+class Solution {
+public:
+        vector<vector<int>>v;
+void solve(vector<int>&candidates,int target,int i,vector<int>arr){
+    
+    // base case
+    if(target == 0){
+        v.push_back(arr);
+        return;
+    }
+    
+    if(i==candidates.size()){
+        return;
+    }
+    
+    
+    // we have two possible path not include and include (target is greater or equal to curr element) 
+    solve(candidates,target,i+1,arr);
+    if(target>=candidates[i]){
+        arr.push_back(candidates[i]);
+        solve(candidates,target-candidates[i],i,arr);
+    }
+    return;
+}
+vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+    vector<int>arr;
+    
+    // call function
+    solve(candidates,target,0,arr);
+    return v;
+
+    }
+};
