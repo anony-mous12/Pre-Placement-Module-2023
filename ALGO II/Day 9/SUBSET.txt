@@ -1,0 +1,24 @@
+class Solution {
+public:
+         void recursive(vector<int>& nums, int i, int n, vector<int> &t, vector<vector<int>> &res){
+    
+    if(i == n){
+        res.push_back(t);
+        return;
+    }
+    t.push_back(nums[i]);
+    recursive(nums, i+1, n, t, res);
+    t.pop_back();
+    recursive(nums, i+1, n, t, res);
+    
+}
+vector<vector<int>> subsets(vector<int>& nums) {
+    
+    int n= nums.size();
+    vector<vector<int>> res;
+    vector<int> t;
+    recursive(nums, 0, n, t, res);
+    return res;
+}
+
+};
