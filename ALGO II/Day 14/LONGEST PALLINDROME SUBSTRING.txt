@@ -1,0 +1,28 @@
+class Solution {
+public:
+    void expand(string& a, int i, int j, int& mxStart, int& mxLen) {
+		// increase the length of string while maintaining it as a palindrome
+        while(i>=0 && j<a.size() && a[i]==a[j]) {
+            i--;
+            j++;
+        }
+		// update if req.
+        if(j-i-1 > mxLen) {
+            mxLen = j-i-1;
+            mxStart = i+1;
+        }
+    }
+    string longestPalindrome(string a) {
+        int mxStart = 0;
+        int mxLen = 1;
+        
+		// for every element consider it as middle of palindrome
+		// and try to expand the palindrome
+        for (int i=0; i<a.size(); i++) {
+            expand(a, i, i, mxStart, mxLen);
+            expand(a, i, i+1, mxStart, mxLen);
+        }
+        
+        return a.substr(mxStart, mxLen);
+    }
+};
