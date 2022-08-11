@@ -1,0 +1,15 @@
+class Solution
+{
+    int solve(int i,int j, int m,int n,vector<vector<int>>&v)
+    {
+        if(i>m || j>n || i<0 || j<0) return 0;
+        if(i==m and j==n) return 1;
+        if(v[i][j]!=-1) return v[i][j];
+        return v[i][j]=solve(i+1,j,m,n,v) + solve(i,j+1,m,n,v);
+    }
+    public:
+    int uniquePaths(int m, int n) {
+        vector<vector<int>>v(m+1,vector<int>(n+1,-1));
+        return solve(0,0,m-1,n-1,v);
+    }
+};
