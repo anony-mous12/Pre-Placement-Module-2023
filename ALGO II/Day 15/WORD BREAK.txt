@@ -1,0 +1,51 @@
+class Solution {
+public:
+    bool wordBreak(string str, vector<string>& arr) {
+        
+       unordered_set<string>st;
+       unordered_map<string,bool>mp;
+       for(int i=0;i<arr.size();i++)
+       {
+           st.insert(arr[i]);
+       }
+       return fun(str,st,mp);
+    }
+    bool fun(string str,unordered_set<string>&st,unordered_map<string,bool>&mp)
+    {
+        if(st.find(str)!=st.end())
+        {
+            return true;
+        }
+        if(str.length()==0)
+        {
+            return true;
+        }
+        if(mp.find(str)!=mp.end())
+        {
+            return mp[str];
+        }
+        string str1="";
+        
+        for(int i=0;i<str.length();i++)
+        {
+            bool result=false;
+            str1+=(str[i]);
+            if(st.find(str1)==st.end())  //nahi milla
+            {
+                continue;
+            }
+            else
+            {
+                string temp=str.substr(i+1,str.length());
+                result=fun(temp,st,mp);
+                if(result==true)
+                {
+                    mp[temp]=true;
+                    return true;
+                }
+            }
+        }
+        mp[str]=false;
+        return mp[str];
+    }
+};

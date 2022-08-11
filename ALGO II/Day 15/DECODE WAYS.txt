@@ -1,0 +1,28 @@
+class Solution {
+public:
+    
+    int f(string s, int i, int n){
+        
+        if(i==n) return 1;
+        
+        if(s[i]=='0') return 0;
+                
+        string st = s.substr(i, 2);
+        
+        int path1 = f(s, i+1, n);
+        
+        int path2 = 0;
+        
+        if(stoi(st)>9 and stoi(st)<=26)
+            path2 = f(s, i+2, n);
+        
+        return path1+path2;        
+        
+    }
+    
+    int numDecodings(string s) {
+        
+        return f(s, 0, s.size());
+        
+    }
+};
