@@ -1,0 +1,23 @@
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        if(!head)
+            return nullptr;
+        if(!head->next)
+            return head;
+        ListNode* node=head;
+        int v=head->val;
+		// we want the node to be the start of duplicate elements
+		// if the current node is not such a node, just recursively go to the next element in the list
+        if(v != node->next->val)
+            head->next=deleteDuplicates(head->next);
+        else{
+			// if current node is the start of duplicate elements
+			// go to the node after the duplicate elements, that is the new head of this current list
+            while(node && v == node->val)
+                node=node->next;
+            head=deleteDuplicates(node);
+        }
+        return head;
+    }
+};
