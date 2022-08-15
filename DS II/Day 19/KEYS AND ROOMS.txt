@@ -1,0 +1,20 @@
+class Solution {
+public:
+    bool canVisitAllRooms(vector<vector<int>>& rooms) {
+        queue<int> q;
+        set<int> unlocked;
+        unlocked.insert(0);
+        q.push(0);
+        while (!q.empty()) {
+            int room = q.front();
+            q.pop();
+            for (int i = 0; i < rooms.at(room).size(); i++) {
+                if (unlocked.find(rooms.at(room).at(i)) == unlocked.end()) {
+                    q.push(rooms.at(room).at(i));
+                    unlocked.insert(rooms.at(room).at(i));
+                }
+            }
+        }
+        return unlocked.size() == rooms.size();
+    }
+};
