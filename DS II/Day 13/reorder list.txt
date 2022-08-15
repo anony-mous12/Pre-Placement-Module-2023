@@ -1,0 +1,30 @@
+class Solution {
+public:
+    
+    ListNode* revLL(ListNode* head){
+        ListNode* curr = head;
+        ListNode* prev = NULL;
+        ListNode* nxt;
+        
+        while(curr){
+            nxt = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = nxt;
+        }
+        return prev;
+    }
+    
+    void reorderList(ListNode* head) {
+        
+        ListNode* temp = head;
+        
+        while(temp != NULL){
+            
+            temp->next = revLL(temp->next);
+            temp = temp->next;
+            
+        }
+        
+    }
+};

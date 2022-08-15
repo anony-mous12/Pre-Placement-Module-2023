@@ -1,0 +1,30 @@
+class Solution {
+public:
+    ListNode* cache=nullptr;
+    ListNode* shuffle(ListNode* head,int k,int cnt) {
+         if(cnt==k) {
+             cache=head;
+             return head;
+         }
+         ListNode* ret = shuffle(head->next,k,cnt+1);
+         ret->next=head;
+         return head;
+    }
+    
+     ListNode* helper(ListNode* head, int k) {
+         int k1=k;
+         ListNode* tmpHead=head;
+         while(k1--) {
+             if(!tmpHead) return head;
+             tmpHead=tmpHead->next;
+         }
+         ListNode* ret = helper(tmpHead,k);
+         ListNode* ret1 = shuffle(head,k,1);
+         ret1->next = ret;
+         return cache;
+    }
+    
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        return helper(head,k);
+    }
+};
