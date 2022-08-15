@@ -1,0 +1,20 @@
+class Solution {
+    int res = INT_MIN;
+    int cnt = 0;
+    void dfs(TreeNode* root, int k) {
+        if (!root || cnt == k) {
+            return ;
+        }
+        dfs(root->left, k);
+        if (cnt < k) {
+            cnt++;
+            res = root->val;
+        }
+        dfs(root->right, k);        
+    }
+public:
+    int kthSmallest(TreeNode* root, int k) {
+        dfs(root, k);
+        return res;        
+    }
+};
