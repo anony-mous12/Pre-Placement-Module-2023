@@ -1,0 +1,15 @@
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+        ListNode **cur = &head;
+        while (*cur != nullptr && (*cur)->next != nullptr) {
+            ListNode *entry_0 = *cur;
+            ListNode *entry_1 = (*cur)->next;
+            entry_0->next = entry_1->next;
+            entry_1->next = entry_0;
+            *cur = entry_1;
+            cur = &(entry_0->next);
+        }
+        return head;
+    }
+};

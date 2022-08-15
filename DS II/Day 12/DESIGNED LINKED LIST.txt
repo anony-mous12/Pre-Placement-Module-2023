@@ -1,0 +1,93 @@
+class MyLinkedList {
+public:
+    MyLinkedList *next;
+    int val;
+    MyLinkedList *head=NULL;
+    
+    MyLinkedList() {
+        
+    }
+    
+    MyLinkedList(int d){
+        val = d;
+        next = NULL;
+    }
+    
+    int get(int index) {
+        if(head==NULL)return -1;
+        MyLinkedList *temp = head;
+        int cnt = 0;
+        while(temp){
+            if(cnt == index){
+                return temp->val;
+            }
+            cnt++;
+            temp = temp->next;
+        }
+        
+        if(cnt != index){
+            return -1;
+        }
+        return -1;
+    }
+    
+    void addAtHead(int val) {
+        MyLinkedList *temp = new MyLinkedList(val);
+        temp->next = head;
+        head = temp;
+    }
+    
+    void addAtTail(int val) {
+        MyLinkedList *newEnd = new MyLinkedList(val);
+        if(head == NULL){
+            addAtHead(val);
+            return ;
+        }
+        MyLinkedList *temp=head;
+        while(temp->next != NULL){
+            temp = temp->next;
+        }
+        temp->next = newEnd;
+    }
+    
+    void addAtIndex(int index, int val) {
+        MyLinkedList *temp = head;
+        int cnt = 0;
+        if(cnt == index){
+            addAtHead(val);
+            return;
+        }
+        while(temp != NULL){
+            cnt++;
+            if(cnt == index){
+                MyLinkedList *newNode = new MyLinkedList(val);
+                MyLinkedList *save = temp->next;
+                temp->next = newNode;
+                newNode->next = save;
+            }
+            temp = temp->next;
+        }
+    }
+    
+    void deleteAtIndex(int index) {
+        MyLinkedList *temp1 = head;
+        int cnt = 0;
+        if(index == 0){
+            head = temp1->next;
+            delete temp1;
+            return;
+        }
+        MyLinkedList *temp = head;
+        MyLinkedList *prev =  NULL;
+        while(temp != NULL){
+            if(cnt == index){
+                prev->next = temp->next;
+                delete temp;
+                return;
+            }
+            cnt++;
+            prev = temp;
+            temp = temp->next;
+        }
+    }
+};
